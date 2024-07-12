@@ -6,6 +6,7 @@ body{
     max-width: 1600px;
     background-size: cover;
 }
+   /*styles*/
 .container{
     padding: 10px;
     background-image: linear-gradient(to bottom right, rgb(255, 0, 204), rgb(247, 247, 8));
