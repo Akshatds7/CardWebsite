@@ -1,0 +1,29 @@
+body{
+    background-image: url("https://codetheweb.blog/assets/img/posts/css-advanced-background-images/cover.jpg");
+    background-repeat: no-repeat;
+    margin : auto;
+    background-attachment: fixed;
+}
+.container{
+    padding: 10px;
+    background-image: linear-gradient(to bottom right, rgb(255, 0, 204), rgb(247, 247, 8));
+    margin: auto;
+    width: 100%;
+    border: 1px solid black;
+    justify-content: center;
+}
+.row{
+    width: auto;
+    margin: auto;
+    justify-content: center;
+    padding: 10px;
+}
+img {
+    
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    padding: auto;
+    margin-top: 10px;
+
+  }
