@@ -3,6 +3,8 @@ body{
     background-repeat: no-repeat;
     margin : auto;
     background-attachment: fixed;
+    max-width: 1600px;
+    background-size: cover;
 }
 .container{
     padding: 10px;
