@@ -1,8 +1,12 @@
 const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 const cardContainer = document.getElementById('card-container');
 const paginationContainer = document.getElementById('pagination');
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
 let currentPage = 1;
 const itemsPerPage = 10; // Number of posts per page
+let allPosts = []; // To store all fetched posts
+let filteredPosts = []; // To store filtered posts
 
 async function fetchPosts() {
   try {
@@ -11,6 +15,7 @@ async function fetchPosts() {
       throw new Error('Network response was not ok');
     }
     const posts = await response.json();
+    allPosts = posts;
     return posts;
   } catch (error) {
     console.error('Error fetching posts:', error);
@@ -92,11 +97,20 @@ paginationContainer.addEventListener('click', async (event) => {
     const page = parseInt(event.target.dataset.page);
     if (page !== currentPage) {
       currentPage = page;
-      const posts = await fetchPosts();
-      displayPosts(posts, currentPage);
-      createPaginationButtons(posts.length);
+      displayPosts(filteredPosts.length ? filteredPosts : allPosts, currentPage);
+      createPaginationButtons(filteredPosts.length ? filteredPosts.length : allPosts.length);
     }
   }
+});
+
+searchButton.addEventListener('click', () => {
+  const query = searchInput.value.toLowerCase();
+  filteredPosts = allPosts.filter(post =>
+    post.title.toLowerCase().includes(query) || post.body.toLowerCase().includes(query)
+  );
+  currentPage = 1; // Reset to the first page
+  displayPosts(filteredPosts, currentPage);
+  createPaginationButtons(filteredPosts.length);
 });
 
 async function createCards() {
